@@ -1,12 +1,16 @@
 function renderBooks() {
+
   const booksWrapper = document.querySelector('.books');
-  booksWrapper.innerHTML =
-  `<div class="book">
+
+const books = getBooks();
+
+const booksHtml = books.map(book => {
+  return `<div class="book">
     <figure class="book__img--wrapper">
-      <img class="book__img" src="assets/david goggins.jpeg" alt="">
+      <img class="book__img" src="${book.url}" alt="">
     </figure>
     <div class="book__title">
-      Can't Hurt Me
+      ${book.title}
     </div>
     <div class="book__ratings">
       <i class="fas fa-star"></i>
@@ -16,10 +20,20 @@ function renderBooks() {
       <i class="fas fa-star-half-alt"></i>
     </div>
     <div class="book__price">
-      <span class="book__price--normal">$59.95</span> $14.95
-    </div>
+      <span class="book__price--normal">$${book.originalPrice.toFixed(2)}</span>
+       </div>
   </div>`
+})
+.join("")
+booksWrapper.innerHTML = booksHtml
 }
+function filterBooks(event){
+  if(event.target.value === 'LOW_TO_HIGH') {
+
+  }
+}
+
+
 setTimeout(() => {
   renderBooks();
 })
